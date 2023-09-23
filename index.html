@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <div id="result">
+  <form class="d-flex container w-75  ms-5 " role="search" id="a1" >
+    <input   id="cname" class="form-control " type="search" placeholder="Search" aria-label="Search">
+    <button onclick="search()" class="btn btn-outline-light" type="button">Search</button>
+   
+   
+
+  </form>
+  <h2 class="text-center text-light mt-5 ">23/09/23</h2>
+
+  <h1 class="text-light mt-1">kochi  
+    
+
+    <i class="fa-solid fa-cloud-moon-rain fa-2xl"></i>
+  </h1>
+
+<div class="row text-light mt-5  text-center">
+  <div class="coloum mt-5 ">
+    <h3 class="">Temp-Maxx</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-temperature-three-quarters"></i></h3>
+    <h3 class="mt-4">30°C</h3>
+  </div>
+  <div class="coloum  mt-5">
+    <h3 class="">Temp-Min</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-temperature-three-quarters"></i></h3>
+    <h3 class="mt-4">30°C</h3>
+  </div>
+
+  <div class="coloum mt-5">
+    <h3 class="">Wind Speed</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-wind"></i></h3>
+    <h3 class="mt-4">1.47m/h</h3>
+  </div>
+  <div class="coloum mt-5">
+    <h3 class="">Humidity</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-droplet"></i></h3>
+    <h3 class="mt-4">76%</h3>
+  </div>
+  
+</div>
+
+
+
+
+</div>
+
+
+</body>
+<script>
+  function search() {
+    placename=cname.value
+    // const inputElement = document.getElementById("cname");
+    // const placename = inputElement.value;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${placename}&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json()).then(outdata=>displaydata(outdata))
+
+
+      function displaydata(data){
+        const name1= data.name;
+        // const date = new Date(data.dt * 1000).toLocaleDateString();
+        const temp1 = data.main.temp_max + " °c";
+        const temp2 = data.main.temp_min + " °c";
+        const winds = data.wind.speed + " m/s";
+        const humi = data.main.humidity + "%";
+
+        const result = document.getElementById("result");      
+       result.innerHTML=`  <form class="d-flex container w-75  ms-5 " role="search" id="a1" >
+    <input   id="cname" class="form-control " type="search" placeholder="Search" aria-label="Search">
+    <button onclick="search()" class="btn btn-outline-dark" type="button">Search</button>
+   
+   
+
+  </form>
+  <h2 class="text-center text-light mt-5 ">23/09/23</h2>
+
+  <h1 class="text-light mt-1">${name1} 
+    
+
+    <i class="fa-solid fa-cloud-moon-rain fa-2xl"></i>
+  </h1>
+
+<div class="row text-light mt-5  text-center">
+  <div class="coloum mt-5 ">
+    <h3 class="">Temp-Maxx</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-temperature-three-quarters"></i></h3>
+    <h3 class="mt-4">${temp1}</h3>
+  </div>
+  <div class="coloum  mt-5">
+    <h3 class="">Temp-Min</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-temperature-three-quarters"></i></h3>
+    <h3 class="mt-4">${temp2}</h3>
+  </div>
+
+  <div class="coloum mt-5">
+    <h3 class="">Wind Speed</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-wind"></i></h3>
+    <h3 class="mt-4">${winds}</h3>
+  </div>
+  <div class="coloum mt-5">
+    <h3 class="">Humidity</h3>
+    <h3 class="mt-4"><i class="fa-solid fa-droplet"></i></h3>
+    <h3 class="mt-4">${humi}</h3>
+  </div>
+  
+</div>
+`
+  }
+}
+  
+</script>
+</html>

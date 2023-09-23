@@ -1,0 +1,28 @@
+body{
+     background-image: url("./sea.jpg");
+     /* background-size: cover; */
+     
+
+}
+#a1{
+
+     margin-top: 100px;
+      /* margin-left: 500px; */
+
+}
+h1{
+     margin-left: 850px;
+     margin-top: 90px;
+     
+}
+i{
+     color: rgb(255, 255, 255);
+}
+.coloum
+{
+     float: left;
+     width: 25%;
+}
+.row{
+     margin-top: 100px;
+}
